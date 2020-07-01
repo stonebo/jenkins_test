@@ -22,6 +22,9 @@ pipeline{
             }
         }
         stage('release'){
+            when{
+                branch comparator: 'GLOB', pattern: '**/master'
+            }
             steps{
                 echo "${branchName}"
                 echo "${gitUrl}"
