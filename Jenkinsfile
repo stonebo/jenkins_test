@@ -61,7 +61,6 @@ pipeline{
         stage('Dev Code Merge'){
             when {
                     branch comparator: 'GLOB', pattern: 'Dev'
-                }
             }
             steps{
                 echo "dev branch -> STG"
