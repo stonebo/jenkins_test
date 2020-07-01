@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    parameter{
+        choice
+    }
     stages{
         stage('setup env'){
             steps{
@@ -25,11 +28,43 @@ pipeline{
         }
         stage('release'){
             when{
-                branch comparator: 'GLOB', pattern: '**/master'
+                branch comparator: 'GLOB', pattern: 'master'
             }
             steps{
-                echo "${branchName}"
-                echo "${gitUrl}"
+                echo "preview -> master"
+            }
+        }
+        stage('preview release'){
+            when{
+                branch comparator: 'GLOB', pattern: 'preview'
+            }
+            steps{
+                echo "STG -> preview"
+            }
+        }
+        stage('prod hotfix'){
+            when{
+                branch comparator: 'GLOB', pattern: 'hotfix-prod-*'
+            }
+            steps{
+                echo "hotfix -> master"
+            }
+        }
+        stage('preview hotfix'){
+            when{
+                branch comparator: 'GLOB', pattern: 'hotfix-preview-*'
+            }
+            steps{
+                echo "hotfix-preview -> preview"
+            }
+        }
+        stage('Dev Code Merge'){
+            when {
+                    branch comparator: 'GLOB', pattern: 'Dev'
+                }
+            }
+            steps{
+                echo "dev branch -> STG"
             }
         }
     }
