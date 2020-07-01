@@ -20,6 +20,7 @@ pipeline{
             steps{
                 echo "testing success"
                 sh "printenv"
+                sh "git branch"
             }
         }
         stage('release'){
