@@ -13,8 +13,8 @@ pipeline{
                     String[] b
                     b=GIT_BRANCH.split('/')
                     String branch
-                    if (b.size() > 1){
-                        branch=b[1]
+                    if (b.size() > 2){
+                        branch=b[0]
                     }
                     echo "${b[0]}"
                     echo "${branch}"
