@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    parameter{
-        choice
-    }
     stages{
         stage('setup env'){
             steps{
