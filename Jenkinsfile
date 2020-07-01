@@ -10,7 +10,7 @@ pipeline{
                     if ( gitBranch.size() > 1){
                         env.branchName = gitBranch[1]
                     }else{
-                        envbranchName = gitBranch[0]
+                        env.branchName = gitBranch[0]
                     }
                     env.gitUrl = GIT_URL.split('://')[1]
                 }
