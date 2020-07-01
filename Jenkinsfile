@@ -7,14 +7,14 @@ pipeline{
                 script{
                     String[] gitBranch
                     String branchName
-                    gitBranch = GIT_BRANCH.spilt('/')
+                    gitBranch = GIT_BRANCH.split('/')
                     if ( gitBranch.size() > 1){
                         branchName = gitBranch[1]
                     }else{
                         branchName = gitBranch[0]
                     }
                     String gitUrl
-                    gitUrl = GIT_URL.spilt('://')[1]
+                    gitUrl = GIT_URL.split('://')[1]
                 }
             }
         }
