@@ -1,24 +1,32 @@
 pipeline{
     agent any
     stages{
-        stage('printenv'){
+        stage('setup env'){
             steps{
-                sh """
-                printenv
-                """
+                echo "setup env"
                 script{
-                    String[] a
-                    a=GIT_URL.split('://')
-                    echo "${a[1]}"
-                    String[] b
-                    b=GIT_BRANCH.split('/')
-                    String branch
-                    if (b.size() > 2){
-                        branch=b[0]
+                    String[] gitBranch
+                    String branchName
+                    gitBranch = GIT_BRANCH.spilt('/')
+                    if ( gitBranch.size() > 1){
+                        branchName = gitBranch[1]
+                    }else{
+                        branchName = gitBranch[0]
                     }
-                    echo "${b[0]}"
-                    echo "${branch}"
+                    String gitUrl
+                    gitUrl = GIT_URL.spilt('://')[1]
                 }
+            }
+        }
+        stage('testing'){
+            steps{
+                echo "testing success"
+            }
+        }
+        stage('release'){
+            steps{
+                echo "${branchName}"
+                echo "${gitUrl}"
             }
         }
     }
