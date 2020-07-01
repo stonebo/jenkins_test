@@ -6,15 +6,13 @@ pipeline{
                 echo "setup env"
                 script{
                     String[] gitBranch
-                    String branchName
                     gitBranch = GIT_BRANCH.split('/')
                     if ( gitBranch.size() > 1){
-                        branchName = gitBranch[1]
+                        env.branchName = gitBranch[1]
                     }else{
-                        branchName = gitBranch[0]
+                        envbranchName = gitBranch[0]
                     }
-                    String gitUrl
-                    gitUrl = GIT_URL.split('://')[1]
+                    env.gitUrl = GIT_URL.split('://')[1]
                 }
             }
         }
