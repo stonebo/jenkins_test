@@ -2,9 +2,11 @@ pipeline{
     agent: any
     stages{
         stage('printenv'){
-            sh """
-            printenv
-            """
+            steps{
+                sh """
+                printenv
+                """
+            }
         }
     }
 }
