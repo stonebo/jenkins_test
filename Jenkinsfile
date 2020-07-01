@@ -19,6 +19,7 @@ pipeline{
         stage('testing'){
             steps{
                 echo "testing success"
+                sh "printenv"
             }
         }
         stage('release'){
